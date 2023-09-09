@@ -36,3 +36,28 @@ git clone **********
 23. pm2 save
 24. pm2 startup
 25. sudo env PATH=$PATH:/home/ubuntu/.nvm/versions/node/v18.17.1/bin /home/ubuntu/.nvm/versions/node/v18.17.1/lib/node_modules/pm2/bin/pm2 startup systemd -u ubuntu --hp /home/ubuntu
+
+
+
+crear policy en AWS
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "UpdateIngress",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:RevokeSecurityGroupIngress",
+                "ec2:AuthorizeSecurityGroupIngress"
+            ],
+            "Resource": "arn:aws:ec2:(region):(accountid):security-group/(security-group)"
+        },
+        {
+            "Sid": "DescribeGroups",
+            "Effect": "Allow",
+            "Action": "ec2:DescribeSecurityGroups",
+            "Resource": "*"
+        }
+    ]
+}
